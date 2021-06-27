@@ -1,0 +1,18 @@
+
+#userInfo {
+    background-color: yellow;
+    padding: 10px;
+    margin: 10px;
+}
+
+#createButton {
+    background-color: turquoise;
+    padding: 10px;
+    margin: 10px;
+}
+
+#theForm{
+    background-color: violet;
+    margin: 10px;
+    padding: 10px;
+}
