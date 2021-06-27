@@ -1,6 +1,6 @@
 
 
-// signin
+// signin here
 const auth = firebase.auth();
 
 const signedIn = document.getElementById('signedIn')
@@ -36,14 +36,6 @@ auth.onAuthStateChanged(user => {
         userDetails.innerHTML = '';
     }
 })
-//
-
-
-//form - <--------!!!!!!!!
-let productName = document.getElementById("productName").value;
-let price = document.getElementById("price").value;
-
-
 
 
 
@@ -61,14 +53,18 @@ auth.onAuthStateChanged(user => {
 
         const { serverTimestamp } = firebase.firestore.FieldValue;
 
-        create.onclick = () => {
+        let form = document.getElementById('form')
+        form.addEventListener('submit', (e) => {
+            e.preventDefault()
             peopleRef.add({
                 uid: user.uid,
-                productName: productName,
-                price: price,
+                productName: form.product.value,
+                price: form.price.value,
                 createdAt: serverTimestamp()
             })
-        }
+            form.product.value = ''
+            form.price.value = ''
+        })
 
         unsubscribe = peopleRef
             .where('uid', '==', user.uid)
@@ -79,11 +75,13 @@ auth.onAuthStateChanged(user => {
 
                     return `
                     <ul>
-                        <li>${doc.data().uid}</li>
-                        <li>${doc.data().productName}</li>
-                        <li>${doc.data().price}</li>
-                        <li>${day}</li>
+                        <li>Item ID: ${doc.id}</li>
+                        <li>Name: ${doc.data().productName}</li>
+                        <li>Price: ${doc.data().price}</li>
+                        <li>Date: ${day}</li>
+                        <button class="btn btn-danger btn-sm">x</button>
                     </ul>`
+                    //delete button not yet functional
                 })
 
                 peopleList.innerHTML = items.join('');
