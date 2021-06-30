@@ -71,15 +71,16 @@ auth.onAuthStateChanged(user => {
             .orderBy('createdAt')
             .onSnapshot(querySnapshot => {
                 const items = querySnapshot.docs.map(doc => {
-                    const day = gettingDate(doc.data().createdAt.seconds)
 
+                    const day = gettingDate(doc.data().createdAt.seconds)
+                    console.log(day)
                     return `
                     <ul>
                         <li>Item ID: ${doc.id}</li>
                         <li>Name: ${doc.data().productName}</li>
                         <li>Price: ${doc.data().price}</li>
                         <li>Date: ${day}</li>
-                        <button class="btn btn-danger btn-sm">x</button>
+                        <button onclick="handleClick('${doc.id}')" class="btn btn-danger btn-sm">x</button>
                     </ul>`
                     //delete button not yet functional
                 })
@@ -97,6 +98,12 @@ const gettingDate = (data) => {
     let date = new Date(unix_timestamp * 1000);
     let day = date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
     return day
+}
+
+const handleClick = (id) => {
+
+    //console.log(id)
+    peopleRef.doc(id).delete()
 }
 
 
