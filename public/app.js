@@ -15,6 +15,8 @@ const createButton = document.getElementById('createButton')
 
 const peopleList = document.getElementById('peopleList')
 
+const totalGrossPrice = document.getElementById('grossPrice')
+
 
 const provider = new firebase.auth.GoogleAuthProvider();
 
@@ -70,10 +72,13 @@ auth.onAuthStateChanged(user => {
             .where('uid', '==', user.uid)
             .orderBy('createdAt')
             .onSnapshot(querySnapshot => {
+                const prices = []
                 const items = querySnapshot.docs.map(doc => {
 
                     const day = gettingDate(doc.data().createdAt.seconds)
-                    console.log(day)
+                    const price = parseFloat(doc.data().price)
+                    prices.push(price)
+
                     return `
                     <ul>
                         <li>Item ID: ${doc.id}</li>
@@ -85,6 +90,8 @@ auth.onAuthStateChanged(user => {
                     //delete button not yet functional
                 })
 
+
+                totalGrossPrice.innerHTML = `Total stock value: ${totalPrice(prices)}`
                 peopleList.innerHTML = items.join('');
             })
     } else {
@@ -104,6 +111,12 @@ const handleClick = (id) => {
 
     //console.log(id)
     peopleRef.doc(id).delete()
+}
+
+const totalPrice = (array) => {
+
+    const total = array.reduce((a, b) => a + b, 0)
+    return total
 }
 
 
