@@ -37,9 +37,10 @@
             <div id="theForm">
                 <form id="form" autocomplete="off">
                     <label for="product" class="form-label">Product:</label><br>
-                    <input type="text" id="productName" name="product" class="form-control"><br>
+                    <input required="true" type="text" id="productName" name="product" class="form-control"><br>
                     <label for="price" class="form-label">Price:</label><br>
-                    <input type="number" id="price" name="price" min="1" max="9999" class="form-control">
+                    <input required="true" type="number" id="price" name="price" min="1" max="9999"
+                        class="form-control">
                     <br>
                     <button id="create" class="btn btn-primary">Create something</button>
                 </form>
