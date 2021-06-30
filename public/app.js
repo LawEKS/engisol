@@ -29,8 +29,9 @@ auth.onAuthStateChanged(user => {
         signedIn.hidden = false;
         signedOut.hidden = true;
         createButton.hidden = false;
-        userDetails.innerHTML = `<h3> Welcome ${user.displayName} </h3>
-        <p> id: ${user.uid}`
+        userDetails.innerHTML = `<h4 class="userDisplayName"> Welcome ${user.displayName} </h4>
+        <img src="${user.photoURL}" id="profilePic" alt="user profile picture">`
+        console.log(user)
     } else {
         signedIn.hidden = true;
         signedOut.hidden = false;

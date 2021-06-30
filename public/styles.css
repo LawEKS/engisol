@@ -1,12 +1,45 @@
+body {
+    background-color: #e673c1;
+}
+
+.header {
+    text-align: center;
+    font-size: 2.5rem;
+    margin: 20px;
+    color: #fff;
+}
+
+.userDisplayName {
+    text-align: center;
+}
+
+#profilePic {
+    border-radius: 50%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: auto;
+    height: auto;
+}
 
 #userInfo {
-    background-color: yellow;
+    background-color: #f5b0df;
     padding: 10px;
     margin: 10px;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px;
+    color: #fff;
+
+}
+
+#signOutBtn {
+
 }
 
 #createButton {
-    background-color: turquoise;
+    background-color: #f5b0df;
+    border-radius: 10px;
     padding: 10px;
     margin: 10px;
 }
@@ -15,4 +48,8 @@
     background-color: violet;
     margin: 10px;
     padding: 10px;
+}
+
+#grossPrice {
+    background-color: antiquewhite;
 }
