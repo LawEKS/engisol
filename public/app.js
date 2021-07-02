@@ -92,7 +92,7 @@ auth.onAuthStateChanged(user => {
                 })
 
 
-                totalGrossPrice.innerHTML = `Total stock value: ${totalPrice(prices)}`
+                totalGrossPrice.innerHTML = `Total Stock Value: <span id="priceInfo">${totalPrice(prices)}</span>`
                 peopleList.innerHTML = items.join('');
             })
     } else {
