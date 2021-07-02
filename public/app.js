@@ -29,10 +29,11 @@ auth.onAuthStateChanged(user => {
         signedIn.hidden = false;
         signedOut.hidden = true;
         createButton.hidden = false;
+        document.getElementById('signedInHeader').hidden = false;
         userDetails.innerHTML = `<h4 class="userDisplayName"> Welcome ${user.displayName} </h4>
         <img src="${user.photoURL}" id="profilePic" alt="user profile picture">`
-        //console.log(user)
     } else {
+        document.getElementById('signedInHeader').hidden = true;
         signedIn.hidden = true;
         signedOut.hidden = false;
         createButton.hidden = true;

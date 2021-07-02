@@ -1,11 +1,31 @@
 body {
     background-color: #e673c1;
+    font-family: 'Montserrat', sans-serif;
 }
 
-#signInBtn{
-    display: flex;
-    align-items: center;
-    justify-content: center;
+#signedOut{
+    margin-top: 200px;
+    text-align: center;
+}
+
+#landingHeader{
+    font-size: 5rem;
+    margin: 50px;
+    color: #fff;
+    padding: 50px;
+}
+
+#logo{
+    color: #fff;
+    transition: all 0.3s ease-in-out 0s;
+    
+}
+
+#logo:hover { 
+    cursor: default; 
+    transform: rotate(360deg); 
+    transition: all 0.3s ease-in-out 0s; 
+    color: gold;
 }
 
 .header {
@@ -30,11 +50,9 @@ body {
 
 #userInfo {
     background-color: #f5b0df;
-    padding: 10px;
-    margin: 10px;
     border-radius: 5px;
     padding: 20px;
-    margin: 20px;
+    margin: 25px;
     color: #fff;
 
 }
@@ -49,7 +67,7 @@ body {
     background-color: #f5b0df;
     border-radius: 5px;
     padding: 10px;
-    margin: 10px;
+    margin: 10px 25px;
 }
 
 #create{
@@ -62,7 +80,7 @@ hr{
 }
 #theForm{
     background-color: violet;
-    margin: 20px;
+    margin: 20px 5px;
     padding: 10px 20px 60px 20px;
     border-radius: 5px;
 }
