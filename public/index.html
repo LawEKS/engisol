@@ -25,10 +25,10 @@
 
         <section id="signedIn" hidden="true">
             <div id="userInfo">
-                <div id="userDetails"></div>
-                <button id="signOutBtn" class="btn btn-primary">
+                <button id="signOutBtn" class="btn btn-primary btn-sm">
                     <i class="fas fa-sign-out-alt"></i>
                 </button>
+                <div id="userDetails"></div>
             </div>
         </section>
 
@@ -37,13 +37,18 @@
             <p id="grossPrice"></p>
             <div id="theForm">
                 <form id="form" autocomplete="off">
-                    <label for="product" class="form-label">Product:</label><br>
-                    <input required="true" type="text" id="productName" name="product" class="form-control"><br>
-                    <label for="price" class="form-label">Price:</label><br>
-                    <input required="true" type="number" id="price" name="price" min="1" max="9999"
-                        class="form-control">
-                    <br>
-                    <button id="create" class="btn btn-primary">Create something</button>
+
+                    <input required="true" type="text" id="productName" name="product" class="form-control"
+                        placeholder="Product"><br>
+
+                    <input required="true" type="number" id="price" name="price" min="1" max="9999" class="form-control"
+                        placeholder="Price">
+
+                    <hr>
+                    <button id="create" class="btn btn-primary btn-lg">
+                        <i class="fas fa-plus-square"></i>
+                    </button>
+
                 </form>
             </div>
 

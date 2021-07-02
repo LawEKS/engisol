@@ -4,8 +4,8 @@ body {
 
 #signInBtn{
     display: flex;
-  align-items: center;
-  justify-content: center;
+    align-items: center;
+    justify-content: center;
 }
 
 .header {
@@ -32,37 +32,64 @@ body {
     background-color: #f5b0df;
     padding: 10px;
     margin: 10px;
-    border-radius: 10px;
+    border-radius: 5px;
     padding: 20px;
     margin: 20px;
     color: #fff;
 
 }
-/* 
-#signOutBtn {
 
-} */
+
+#signOutBtn {
+    float: right;
+}
 
 
 #createButton {
     background-color: #f5b0df;
-    border-radius: 20px;
+    border-radius: 5px;
     padding: 10px;
     margin: 10px;
 }
 
+#create{
+    float: right;
+}
+
+hr{
+    border: 1px solid #fff;
+    border-radius: 5px;
+}
 #theForm{
     background-color: violet;
+    margin: 20px;
+    padding: 10px 20px 60px 20px;
+    border-radius: 5px;
+}
+
+.list{
+    background-color: #fff;
+    border-radius: 5px;
+    margin: 10px;
+    padding: 5px;
+    list-style-type: none;
     margin: 10px;
     padding: 10px;
-    border-radius: 20px;
+
+}
+
+#productNameLi{
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    padding-bottom: 5px;
+    font-weight: 600;
 }
 
 #grossPrice {
     background-color:#fff;
     font-size: 2rem;
     text-align: center;
-    border-radius: 20px;
+    border-radius: 5px;
     padding: 10px;
 }
 

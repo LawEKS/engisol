@@ -31,7 +31,7 @@ auth.onAuthStateChanged(user => {
         createButton.hidden = false;
         userDetails.innerHTML = `<h4 class="userDisplayName"> Welcome ${user.displayName} </h4>
         <img src="${user.photoURL}" id="profilePic" alt="user profile picture">`
-        console.log(user)
+        //console.log(user)
     } else {
         signedIn.hidden = true;
         signedOut.hidden = false;
@@ -81,18 +81,22 @@ auth.onAuthStateChanged(user => {
                     prices.push(price)
 
                     return `
-                    <ul>
-                        <li>Item ID: ${doc.id}</li>
-                        <li>Name: ${doc.data().productName}</li>
-                        <li>Price: ${doc.data().price}</li>
-                        <li>Date: ${day}</li>
-                        <button onclick="handleClick('${doc.id}')" class="btn btn-danger btn-sm">x</button>
+                    <ul class="list">
+                        
+                    <div style="float:right;">
+                        <button onclick="handleClick('${doc.id}')" class="btn btn-danger btn-sm">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </div>
+                        <li id="productNameLi">${doc.data().productName}</li>
+                        <li><i class="fas fa-coins"></i> ${doc.data().price} Dh</li>
+                        <li><i class="far fa-clock"></i> ${day}</li>
                     </ul>`
                     //delete button not yet functional
                 })
 
 
-                totalGrossPrice.innerHTML = `Total Stock Value: <span id="priceInfo">${totalPrice(prices)}</span>`
+                totalGrossPrice.innerHTML = `<i class="fas fa-wallet"></i> <span id="priceInfo">${totalPrice(prices)}</span>`
                 peopleList.innerHTML = items.join('');
             })
     } else {
