@@ -43,15 +43,25 @@
 
 
         <section id="createButton" hidden="true">
-            <p id="grossPrice"></p>
+            <!-- <p id="grossPrice"></p> -->
             <div id="theForm">
                 <form id="form" autocomplete="off">
 
-                    <input required="true" type="text" id="productName" name="product" class="form-control"
+                    <!-- <input required="true" type="text" id="productName" name="product" class="form-control"
                         placeholder="Product"><br>
 
                     <input required="true" type="number" id="price" name="price" min="1" max="9999" class="form-control"
-                        placeholder="Price">
+                        placeholder="Price"> -->
+
+                    <input required="true" type="text" id="name" name="name" class="form-control"
+                        placeholder="Client Name">
+                    <input required="true" type="number" id="number" name="number" class="form-control"
+                        placeholder="Phone Number">
+                    <input required="true" type="number" id="amountOwed" name="amountOwed" class="form-control"
+                        placeholder="How much they owe me">
+                    <input required="true" type="text" id="amountPaid" name="amountPaid" class="form-control"
+                        placeholder="How much they've paid me">
+                    <!-- <input required="true" type="text" id="name" name="name" class="form-control" placeholder="profit made"> -->
 
                     <hr>
                     <button id="create" class="btn btn-primary btn-lg">

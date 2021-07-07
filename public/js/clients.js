@@ -15,7 +15,7 @@ const createButton = document.getElementById('createButton')
 
 const peopleList = document.getElementById('peopleList')
 
-const totalGrossPrice = document.getElementById('grossPrice')
+//const totalGrossPrice = document.getElementById('grossPrice')
 
 
 const provider = new firebase.auth.GoogleAuthProvider();
@@ -32,7 +32,7 @@ auth.onAuthStateChanged(user => {
         document.getElementById('signedInHeader').hidden = false;
         userDetails.innerHTML = `<h4 class="userDisplayName"> Welcome ${user.displayName} </h4>
         <img src="${user.photoURL}" id="profilePic" alt="user profile picture">`
-        console.log(user)
+
     } else {
         document.getElementById('signedInHeader').hidden = true;
         signedIn.hidden = true;
@@ -47,58 +47,77 @@ auth.onAuthStateChanged(user => {
 const db = firebase.firestore();
 
 
-let peopleRef;
+let clientRef;
 let unsubscribe;
 
 
 
 auth.onAuthStateChanged(user => {
     if (user) {
-        peopleRef = db.collection('demo');
+        clientRef = db.collection('clients');
 
         const { serverTimestamp } = firebase.firestore.FieldValue;
-
+        const profit = 10 // Hard-coded for now, will calculate in future
         let form = document.getElementById('form')
         form.addEventListener('submit', (e) => {
             e.preventDefault()
-            peopleRef.add({
+            clientRef.add({
                 uid: user.uid,
-                productName: form.product.value,
-                price: form.price.value,
+                name: form.name.value,
+                number: form.number.value,
+                owes: form.amountOwed.value,
+                paid: form.amountPaid.value,
+                profit: profit,
                 createdAt: serverTimestamp()
             })
-            form.product.value = ''
-            form.price.value = ''
+            form.name.value = ''
+            form.number.value = ''
+            form.amountOwed.value = ''
+            form.amountPaid.value = ''
         })
 
-        unsubscribe = peopleRef
+        unsubscribe = clientRef
             .where('uid', '==', user.uid)
             .orderBy('createdAt')
             .onSnapshot(querySnapshot => {
-                const prices = []
+                //const prices = []
                 const items = querySnapshot.docs.map(doc => {
-                    console.log(doc.data())
-                    const day = gettingDate(doc.data().createdAt.seconds)
-                    const price = parseFloat(doc.data().price)
-                    prices.push(price)
 
+                    const day = gettingDate(doc.data().createdAt.seconds)
+                    //const price = parseFloat(doc.data().price)
+                    //prices.push(price)
+                    const owes = doc.data().owes
+                    let message;
+                    if (owes == 0) {
+                        message = "All paid! ✔️"
+                    } else {
+                        message = owes + "Dh left to pay"
+                    }
                     return `
                     <ul class="list">
                         
                     <div style="float:right;">
-                        <button onclick="handleClick('${doc.id}')" class="btn btn-danger btn-sm">
+                        <button onclick="deleteClient('${doc.id}')" class="btn btn-danger btn-sm">
                             <i class="fas fa-trash-alt"></i>
                         </button>
                     </div>
-                        <li id="productNameLi">${doc.data().productName}</li>
-                        <li><i class="fas fa-coins"></i> ${doc.data().price} Dh</li>
+                    <div style="float:right;">
+                        <button onclick="updateClient('${doc.id}')" class="btn btn-success btn-sm">
+                            <i class="fas fa-pen"></i>
+                        </button>
+                    </div>
+                        <li id="productNameLi">${doc.data().name}</li>
+                        <li><i class="fas fa-phone-volume"></i> ${doc.data().number}</li>
+                        <li><i class="fas fa-hand-holding-usd"></i> ${message}</li>
+                        <li><i class="fas fa-file-invoice-dollar"></i> ${doc.data().paid}Dh paid so far</li>
+                        <li><i class="fas fa-coins"></i> ${doc.data().profit}Dh profit made</li>
                         <li><i class="far fa-clock"></i> ${day}</li>
                     </ul>`
 
                 })
 
 
-                totalGrossPrice.innerHTML = `<i class="fas fa-wallet"></i> <span id="priceInfo">${totalPrice(prices)}</span>`
+                //totalGrossPrice.innerHTML = `<i class="fas fa-wallet"></i> <span id="priceInfo">${totalPrice(prices)}</span>`
                 peopleList.innerHTML = items.join('');
             })
     } else {
@@ -114,17 +133,18 @@ const gettingDate = (data) => {
     return day
 }
 
-const handleClick = (id) => {
-
-    //console.log(id)
-    peopleRef.doc(id).delete()
+const deleteClient = (id) => {
+    clientRef.doc(id).delete()
 }
 
-const totalPrice = (array) => {
-
-    const total = array.reduce((a, b) => a + b, 0)
-    return total
+const updateClient = (id) => {
+    console.log(id)
 }
+
+// const totalPrice = (array) => {
+//     const total = array.reduce((a, b) => a + b, 0)
+//     return total
+// }
 
 
 
