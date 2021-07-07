@@ -32,6 +32,7 @@ auth.onAuthStateChanged(user => {
         document.getElementById('signedInHeader').hidden = false;
         userDetails.innerHTML = `<h4 class="userDisplayName"> Welcome ${user.displayName} </h4>
         <img src="${user.photoURL}" id="profilePic" alt="user profile picture">`
+        console.log(user)
     } else {
         document.getElementById('signedInHeader').hidden = true;
         signedIn.hidden = true;
@@ -76,7 +77,7 @@ auth.onAuthStateChanged(user => {
             .onSnapshot(querySnapshot => {
                 const prices = []
                 const items = querySnapshot.docs.map(doc => {
-
+                    console.log(doc.data())
                     const day = gettingDate(doc.data().createdAt.seconds)
                     const price = parseFloat(doc.data().price)
                     prices.push(price)
@@ -93,7 +94,7 @@ auth.onAuthStateChanged(user => {
                         <li><i class="fas fa-coins"></i> ${doc.data().price} Dh</li>
                         <li><i class="far fa-clock"></i> ${day}</li>
                     </ul>`
-                    //delete button not yet functional
+
                 })
 
 
